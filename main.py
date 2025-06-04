@@ -13,21 +13,11 @@ def exibir_menu():
     print("8. Exibir Fila de Espera de um Livro")
     print("9. Listar Todos os Livros (Ordenados por Título)")
     print("10. Listar Todos os Usuários")
-    print("0. Sair")
+    print("0. Sair e Salvar")
     return input("Escolha uma opção: ")
 
 def main():
-    sistema = SistemaBiblioteca()
-
-    # Dados de exemplo (opcional)
-    sistema.cadastrar_livro("O Senhor dos Anéis", "J.R.R. Tolkien", "978-3-16-148410-0", 2)
-    sistema.cadastrar_livro("Dom Quixote", "Miguel de Cervantes", "978-0-14-044909-9", 1)
-    sistema.cadastrar_livro("A Metamorfose", "Franz Kafka", "978-8535914841", 3)
-    
-    sistema.cadastrar_usuario("Alice Silva", "2023001", "Ciência da Computação")
-    sistema.cadastrar_usuario("Bruno Costa", "2023002", "Engenharia Civil")
-    sistema.cadastrar_usuario("Carla Dias", "2023003", "Medicina")
-
+    sistema = SistemaBiblioteca(arquivo_dados="minha_biblioteca.json") 
 
     while True:
         opcao = exibir_menu()
@@ -92,6 +82,7 @@ def main():
             sistema.listar_todos_os_usuarios()
 
         elif opcao == '0':
+            sistema.salvar_dados() # Salva antes de sair
             print("Saindo do sistema. Até logo! 👋")
             break
         else:
