@@ -1,0 +1,20 @@
+{
+    "usuarios": [
+        {
+            "nome": "Administrador",
+            "matricula": "root",
+            "curso": "ADM",
+            "tipo": "Funcionario",
+            "senha": "admin"
+        },
+        {
+            "nome": "Felipe Christopher",
+            "matricula": "01",
+            "curso": "SI",
+            "tipo": "Funcionario",
+            "senha": "123"
+        }
+    ],
+    "livros": [],
+    "historico_emprestimos": []
+}
