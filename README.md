@@ -93,36 +93,37 @@ Este projeto implementa um **Sistema de Gerenciamento de Biblioteca** em Python,
 
 ## 📁 Estrutura de Pastas
 
-```text
-Sistema-Biblioteca/
-│
-├── componentes/
-│   ├── __pycache__/
-│   ├── aba_emprestimos.py
-│   ├── aba_historico.py
-│   ├── aba_livros.py
-│   ├── aba_usuarios.py
-│   ├── login.py
-│
-├── dist/
-│   └── (arquivos gerados pelo PyInstaller, ex: interface.exe)
-│
-├── data/
-│   └── minha_biblioteca.json         # Dados persistentes do sistema
-│
-├── docs/
-│   └── README.md                     # Documentação do projeto
-│
-├── main.py                           # Ponto de entrada alternativo
-├── interface.py                      # Ponto de entrada principal/interface gráfica
-├── arvore_binaria_busca.py           # Implementação da ABB
-├── lista_encadeada.py                # Implementação da lista encadeada
-├── estruturas_elementares.py         # Outras estruturas de dados auxiliares
-├── sistema_biblioteca.py             # Módulo principal do sistema (lógica central)
-├── interface.spec                    # Arquivo de configuração do PyInstaller
-├── biblioteca.ico                    # Ícone do sistema
-└── .gitignore                        # Ignorar arquivos não necessários no controle de versão
-
+    ```text
+    Sistema-Biblioteca/
+    │
+    ├── componentes/
+    │   ├── __pycache__/
+    │   ├── aba_emprestimos.py
+    │   ├── aba_historico.py
+    │   ├── aba_livros.py
+    │   ├── aba_usuarios.py
+    │   ├── login.py
+    │
+    ├── dist/
+    │   └── (arquivos gerados pelo PyInstaller, ex: interface.exe)
+    │
+    ├── data/
+    │   └── minha_biblioteca.json         # Dados persistentes do sistema
+    │
+    ├── docs/
+    │   └── README.md                     # Documentação do projeto
+    │
+    ├── main.py                           # Ponto de entrada alternativo
+    ├── interface.py                      # Ponto de entrada principal/interface gráfica
+    ├── arvore_binaria_busca.py           # Implementação da ABB
+    ├── lista_encadeada.py                # Implementação da lista encadeada
+    ├── estruturas_elementares.py         # Outras estruturas de dados auxiliares
+    ├── sistema_biblioteca.py             # Módulo principal do sistema (lógica central)
+    ├── interface.spec                    # Arquivo de configuração do PyInstaller
+    ├── biblioteca.ico                    # Ícone do sistema
+    └── .gitignore                        # Ignorar arquivos não necessários no controle de versão
+    ```
+---
 
 ## 🔐 Permissões
 
