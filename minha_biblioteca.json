@@ -1,18 +1,33 @@
 {
-    "usuarios": [],
+    "usuarios": [
+        {
+            "nome": "Administrador",
+            "matricula": "root",
+            "curso": "ADM",
+            "tipo": "Funcionario",
+            "senha": "admin"
+        },
+        {
+            "nome": "Felipe Christopher",
+            "matricula": "01",
+            "curso": "SI",
+            "tipo": "Funcionario",
+            "senha": "Xereca159"
+        }
+    ],
     "livros": [
         {
             "titulo": "Biblia",
             "autor": "Deus",
             "isbn": "01",
-            "quantidade_exemplares": 99999,
+            "quantidade_exemplares": 99997,
             "fila_espera_ids": []
         },
         {
-            "titulo": "asda",
-            "autor": "asdas",
-            "isbn": "1231",
-            "quantidade_exemplares": 11,
+            "titulo": "Teste",
+            "autor": "teste",
+            "isbn": "02",
+            "quantidade_exemplares": 10,
             "fila_espera_ids": []
         }
     ],

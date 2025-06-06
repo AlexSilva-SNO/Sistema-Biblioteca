@@ -43,7 +43,12 @@ def main():
             nome = input("Nome: ")
             matricula = input("Matrícula: ")
             curso = input("Curso: ")
-            sistema.cadastrar_usuario(nome, matricula, curso)
+            tipo = ""
+            while tipo not in ["Cliente", "Funcionario"]:
+                tipo = input("Tipo de usuário ('Cliente' ou 'Funcionario'): ").capitalize()
+                if tipo not in ["Cliente", "Funcionario"]:
+                    print("Tipo inválido. Digite 'Cliente' ou 'Funcionario'.")
+            sistema.cadastrar_usuario(nome, matricula, curso, tipo)
 
         elif opcao == '3':
             print("\n--- Realizar Empréstimo ---")
