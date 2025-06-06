@@ -158,11 +158,11 @@ Ideal para uso em disciplinas de Estrutura de Dados, POO ou como base para siste
 ## 📝 Requisitos Atendidos
 
 ✔ Cadastro de livros (ABB, título como chave)
-* Cadastro de usuários (Lista Encadeada)
-* Empréstimo de livros (fila de espera por livro)
-* Devolução de livros (histórico/pilha, fila automática)
-* Consultas: por título (ABB) e matrícula (lista encadeada)
-* Interface gráfica e login seguro
-* Geração de .exe (distribuição sem Python)
+✔ Cadastro de usuários (Lista Encadeada)
+✔ Empréstimo de livros (fila de espera por livro)
+✔ Devolução de livros (histórico/pilha, fila automática)
+✔ Consultas: por título (ABB) e matrícula (lista encadeada)
+✔ Interface gráfica e login seguro
+✔ Geração de .exe (distribuição sem Python)
 
 ---
