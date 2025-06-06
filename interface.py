@@ -1,9 +1,6 @@
 import tkinter as tk
 import ttkbootstrap as tb
 from ttkbootstrap.dialogs import Messagebox
-import os
-import sys
-
 from sistema_biblioteca import SistemaBiblioteca
 from componentes.Login import TelaLogin
 from componentes.aba_livros import AbaLivros
@@ -65,13 +62,5 @@ class BibliotecaApp:
 
 if __name__ == "__main__":
     root = tb.Window(themename="darkly")
-    if getattr(sys, 'frozen', False):
-        # Quando executa como .exe via PyInstaller
-        icon_path = os.path.join(sys._MEIPASS, "biblioteca.ico")
-    else:
-        # Quando executa como script .py
-        icon_path = os.path.abspath("biblioteca.ico")
-
-    root.iconbitmap(icon_path)
     app = BibliotecaApp(root)
     root.mainloop()
