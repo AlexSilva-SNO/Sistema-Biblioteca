@@ -129,3 +129,12 @@ class SistemaBiblioteca:
                 self.historico_emprestimos.empilhar(emprestimo)
         
         print("Dados carregados com sucesso!")
+
+    def listar_todos_os_livros(self):
+        livros = self.arvore_livros_por_titulo.listar_todos_em_ordem()  # Corrigido!
+        if not livros:
+            print("Nenhum livro cadastrado.")
+            return
+        print("\n--- Lista de Livros (ordenados por título) ---")
+        for livro in livros:
+            print(f"Título: {livro.titulo} | Autor: {livro.autor} | ISBN: {livro.isbn} | Quantidade: {livro.quantidade_exemplares}")

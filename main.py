@@ -59,6 +59,7 @@ def main():
 
         elif opcao == '5':
             print("\n--- Consultar Livro por Título ---")
+
             titulo = input("Título do livro: ")
             sistema.consultar_livro_por_titulo(titulo)
 

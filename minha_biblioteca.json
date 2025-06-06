@@ -1,0 +1,13 @@
+{
+    "usuarios": [],
+    "livros": [
+        {
+            "titulo": "Biblia",
+            "autor": "Deus",
+            "isbn": "01",
+            "quantidade_exemplares": 99999,
+            "fila_espera_ids": []
+        }
+    ],
+    "historico_emprestimos": []
+}
