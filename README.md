@@ -1,65 +1,166 @@
 # 🏛️ Sistema de Gerenciamento de Biblioteca 📚
 
-Este projeto implementa um Sistema de Gerenciamento de Biblioteca em Python, aplicando conceitos fundamentais de estruturas de dados. O sistema permite o cadastro de livros e usuários, gerenciamento de empréstimos e devoluções, incluindo filas de espera para livros indisponíveis e um histórico de transações.
+Este projeto implementa um **Sistema de Gerenciamento de Biblioteca** em Python, com interface gráfica moderna, utilizando estruturas de dados clássicas e arquitetura modular. O sistema é ideal para fins acadêmicos, demonstração de conceitos de Estrutura de Dados e uso prático em pequenos ambientes de biblioteca.
+
+---
 
 ## ✨ Funcionalidades Principais
 
-1.  **Cadastro de Livros:**
-    * Armazena informações como Título, Autor, ISBN e Quantidade de exemplares.
-    * Organizados em uma **Árvore Binária de Busca (ABB)** utilizando o **Título** como chave principal.
-    * Cada livro possui sua própria **Fila de Espera** para usuários interessados quando não há exemplares disponíveis.
-    * Para buscas eficientes por ISBN, um **mapa (dicionário)** auxiliar é utilizado.
+### 1. Cadastro de Livros
 
-2.  **Cadastro de Usuários:**
-    * Registra Nome, Matrícula e Curso do usuário.
-    * Armazenados em uma **Lista Encadeada**.
+* **Armazenamento:** Árvore Binária de Busca (ABB)
+* **Campos:** Título, Autor, ISBN, Quantidade de exemplares disponíveis
+* **Busca:** Por título (ABB) e ISBN (dicionário auxiliar)
+* **Fila de Espera:** Cada livro possui uma fila de espera individual para reservas
 
-3.  **Empréstimo de Livros:**
-    * Verifica a disponibilidade de exemplares.
-    * Se disponível, registra o empréstimo e decrementa a quantidade.
-    * Caso contrário, o usuário é adicionado à **Fila de Espera** do livro solicitado.
+### 2. Cadastro de Usuários
 
-4.  **Devolução de Livros:**
-    * Registra a devolução no **Histórico de Empréstimos** (uma **Pilha**).
-    * Incrementa a quantidade de exemplares disponíveis.
-    * Verifica a **Fila de Espera**: se houver usuários, o livro é automaticamente emprestado ao próximo da fila.
+* **Armazenamento:** Lista Encadeada
+* **Campos:** Nome, Matrícula, Curso, Tipo (Cliente ou Funcionário), Senha (login seguro)
+* **Busca:** Por matrícula (lista encadeada)
 
-5.  **Consultas:**
-    * Busca de livros por **Título** (utilizando a ABB).
-    * Busca de livros por **ISBN** (utilizando o mapa auxiliar).
-    * Busca de usuários por **Matrícula** (na Lista Encadeada).
-    * Visualização do Histórico de Empréstimos.
-    * Visualização da Fila de Espera de um livro específico.
+### 3. Empréstimo de Livros
+
+* **Verificação de disponibilidade:** Se houver exemplar, registra o empréstimo e atualiza a quantidade
+* **Fila de Espera:** Se não houver exemplar, o usuário entra na fila de espera do livro
+
+### 4. Devolução de Livros
+
+* **Histórico:** Toda devolução é registrada em uma pilha de histórico de empréstimos
+* **Liberação automática:** Se houver fila, o próximo usuário recebe o exemplar automaticamente
+
+### 5. Consultas e Relatórios
+
+* **Livros:** Busca por título e ISBN
+* **Usuários:** Busca por matrícula
+* **Histórico:** Consulta de todos os empréstimos e devoluções realizados
+* **Fila de Espera:** Consulta dos próximos usuários aguardando cada livro
+
+### 6. Controle de Permissões e Login
+
+* **Login seguro:** Acesso ao sistema por matrícula e senha
+* **Funcionário vs Cliente:** Apenas funcionários podem cadastrar/editar/excluir livros e usuários, além de limpar histórico
+
+### 7. Interface Moderna
+
+* **Interface gráfica:** Tkinter + ttkbootstrap
+* **Visual:** Limpo, dark mode, responsivo, navegação por abas
+* **Componentização:** Código dividido em arquivos por aba/tela (fácil manutenção e extensões)
+* **Compilação para .exe:** Executável sem necessidade de Python instalado
+
+---
 
 ## 🛠️ Estruturas de Dados Utilizadas
 
-* **Árvore Binária de Busca (ABB):** Para armazenar e organizar os `Livros` pelo `Título`. Cada nó pode conter uma lista de livros caso haja títulos idênticos com ISBNs diferentes.
-* **Dicionário (Hash Map):** Como estrutura auxiliar para mapear `ISBN` a `Livros`, permitindo busca rápida por ISBN.
-* **Lista Encadeada:** Para armazenar os `Usuários`.
-* **Fila (Queue):** Implementada com `collections.deque`, utilizada para a `Fila de Espera` de cada `Livro`.
-* **Pilha (Stack):** Implementada com listas Python, utilizada para manter o `Histórico de Empréstimos`.
+| Estrutura       | Utilização                                                    |
+| --------------- | ------------------------------------------------------------- |
+| ABB             | Armazenamento e busca eficiente de livros por título          |
+| Lista Encadeada | Cadastro e consulta de usuários                               |
+| Fila (Queue)    | Fila de espera de reservas para livros                        |
+| Pilha (Stack)   | Histórico de empréstimos e devoluções                         |
+| Dicionário      | Mapeamento rápido de ISBN para Livro e matrícula para Usuário |
+
+---
 
 ## 🚀 Como Executar
 
-1.  **Pré-requisitos:**
-    * Python 3.x
+### Opção 1: Rodando pelo Python
 
-2.  **Estrutura dos Arquivos:**
-    O projeto está organizado nos seguintes módulos Python:
-    * `estruturas_elementares.py`: Define as classes `Livro`, `Usuario`, `Emprestimo`, e as implementações básicas de `Fila` e `Pilha`.
-    * `arvore_binaria_busca.py`: Contém a implementação da `NoArvore` e `ArvoreBinariaBusca`.
-    * `lista_encadeada.py`: Contém a implementação da `NoLista` e `ListaEncadeada`.
-    * `sistema_biblioteca.py`: Contém a classe `SistemaBiblioteca` que integra todas as estruturas e funcionalidades.
-    * `main.py`: Ponto de entrada do programa, responsável pelo menu interativo.
+**Pré-requisitos:** Python 3.x instalado
 
-3.  **Execução:**
-    * Certifique-se de que todos os arquivos `.py` estejam no mesmo diretório.
-    * Execute o arquivo principal através do terminal:
-        ```bash
-        python main.py
-        ```
-    * Siga as instruções do menu interativo para utilizar o sistema.
+1. Instale as dependências:
 
-## 📝 (Opcional) Persistência de Dados
+   ```bash
+   pip install ttkbootstrap
+   ```
+2. Execute o sistema:
 
-A funcionalidade de salvar e carregar os dados do sistema em arquivos (ex: JSON, CSV) é uma melhoria opcional que foi implementada para manter o estado do sistema entre execuções.
+   ```bash
+   python interface.py
+   ```
+
+### Opção 2: Rodando como Programa .exe (sem Python)
+
+1. Vá até a pasta `dist/` (após gerar o executável com PyInstaller)
+2. Garanta que estejam juntos:
+
+   * `interface.exe`
+   * `minha_biblioteca.json` (opcional, para manter os dados)
+   * Pasta `componentes/` (com todos os arquivos .py das abas/telas)
+3. Execute `interface.exe` (pode ser levado para qualquer computador Windows!)
+
+---
+
+## 📁 Estrutura de Pastas
+
+Sistema-Biblioteca/
+│
+├── componentes/
+│   ├── __pycache__/
+│   ├── aba_emprestimos.py
+│   ├── aba_historico.py
+│   ├── aba_livros.py
+│   ├── aba_usuarios.py
+│   ├── login.py
+│
+├── dist/
+│   └── (arquivos gerados pelo PyInstaller, ex: interface.exe)
+│
+├── data/
+│   └── minha_biblioteca.json         # Dados persistentes do sistema
+│
+├── docs/
+│   └── README.md                     # Documentação do projeto
+│
+├── main.py                           # Ponto de entrada alternativo
+├── interface.py                      # Ponto de entrada principal/interface gráfica
+├── arvore_binaria_busca.py           # Implementação da ABB
+├── lista_encadeada.py                # Implementação da lista encadeada
+├── estruturas_elementares.py         # Outras estruturas de dados auxiliares
+├── sistema_biblioteca.py             # Módulo principal do sistema (lógica central)
+├── interface.spec                    # Arquivo de configuração do PyInstaller
+├── biblioteca.ico                    # Ícone do sistema
+└── .gitignore                        # Ignorar arquivos não necessários no controle de versão
+
+
+## 🔐 Permissões
+
+* **Funcionários:** Cadastro, edição e exclusão de livros/usuários, limpeza de histórico.
+* **Clientes:** Apenas consultas e solicitações de empréstimo/devolução.
+* **Login obrigatório:** Por matrícula e senha.
+
+---
+
+## 💾 Persistência de Dados
+
+Todos os cadastros, histórico e filas são salvos em um arquivo JSON (`minha_biblioteca.json`) no mesmo diretório do executável.
+
+O sistema carrega automaticamente o estado ao iniciar.
+
+---
+
+## 🎨 Personalização
+
+* Ícone próprio do sistema (`biblioteca.ico`) incluído no .exe e na janela da aplicação.
+* Visual dark mode com cores neutras, botões destacados e experiência amigável para o usuário.
+
+---
+
+## 🤝 Contribuição
+
+Sinta-se livre para adaptar, melhorar ou sugerir novas funcionalidades!
+Ideal para uso em disciplinas de Estrutura de Dados, POO ou como base para sistemas maiores.
+
+---
+
+## 📝 Requisitos Atendidos
+
+* Cadastro de livros (ABB, título como chave)
+* Cadastro de usuários (Lista Encadeada)
+* Empréstimo de livros (fila de espera por livro)
+* Devolução de livros (histórico/pilha, fila automática)
+* Consultas: por título (ABB) e matrícula (lista encadeada)
+* Interface gráfica e login seguro
+* Geração de .exe (distribuição sem Python)
+
+---
