@@ -93,6 +93,7 @@ Este projeto implementa um **Sistema de Gerenciamento de Biblioteca** em Python,
 
 ## 📁 Estrutura de Pastas
 
+```text
 Sistema-Biblioteca/
 │
 ├── componentes/
