@@ -92,7 +92,7 @@ class AbaLivros(tb.Frame):
             # Título em destaque
             tb.Label(card, text=livro.titulo, font=("Segoe UI", 14, "bold"), bootstyle="inverse-dark").pack(anchor="w")
             tb.Label(card, text=f"Autor: {livro.autor}", font=("Segoe UI", 11)).pack(anchor="w", pady=(2, 0))
-            tb.Label(card, text=f"ISBN: {livro.isbn}", font=("Segoe UI", 11), bootstyle="secondary").pack(anchor="w")
+            tb.Label(card, text=f"ISBN: {livro.isbn}", font=("Segoe UI", 11)).pack(anchor="w")
             tb.Label(card, text=f"Exemplares: {livro.quantidade_exemplares}", font=("Segoe UI", 11)).pack(anchor="w", pady=(0, 2))
 
             # Botões de ação (só para funcionários)
