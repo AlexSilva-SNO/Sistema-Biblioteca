@@ -1,0 +1,21 @@
+{
+    "usuarios": [
+        {
+            "nome": "Administrador",
+            "matricula": "root",
+            "curso": "ADM",
+            "tipo": "Funcionario",
+            "senha": "admin"
+        }
+    ],
+    "livros": [
+        {
+            "titulo": "Biblia",
+            "autor": "Deus",
+            "isbn": "01",
+            "quantidade_exemplares": 1,
+            "fila_espera_ids": []
+        }
+    ],
+    "historico_emprestimos": []
+}

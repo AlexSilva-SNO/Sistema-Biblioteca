@@ -1,8 +1,6 @@
-# estruturas_elementares.py
 import datetime
-from collections import deque # Mantemos Fila aqui para Livro
+from collections import deque
 
-# ... (Classe Fila e Pilha permanecem como antes) ...
 class Fila:
     def __init__(self):
         self._dados = deque()
@@ -26,13 +24,11 @@ class Fila:
     def __len__(self):
         return len(self._dados)
     
-    # Para serialização da fila de espera (lista de matrículas)
     def to_list_of_user_ids(self):
-        if all(isinstance(user, Usuario) for user in self._dados):
+        if all(hasattr(user, "matricula") for user in self._dados):
             return [user.matricula for user in self._dados]
-        return [] # Ou levantar um erro se contiver tipos inesperados
+        return []
 
-    # Para popular a fila ao carregar
     def from_list_of_user_ids(self, user_ids, user_map):
         self._dados.clear()
         for user_id in user_ids:
@@ -63,37 +59,47 @@ class Pilha:
     def __iter__(self):
         return reversed(self._dados)
     
-    def get_all_items(self): # Para serialização da pilha
+    def get_all_items(self):
         return list(self._dados)
 
-
 class Usuario:
-    def __init__(self, nome, matricula, curso):
+    def __init__(self, nome, matricula, curso, tipo="Cliente", senha=""):
         self.nome = nome
         self.matricula = matricula
         self.curso = curso
+        self.tipo = tipo  # "Cliente" ou "Funcionario"
+        self.senha = senha
 
     def __str__(self):
-        return f"Nome: {self.nome}, Matrícula: {self.matricula}, Curso: {self.curso}"
+        return f"Nome: {self.nome}, Matrícula: {self.matricula}, Curso: {self.curso}, Tipo: {self.tipo}"
 
     def to_dict(self):
         return {
             "nome": self.nome,
             "matricula": self.matricula,
             "curso": self.curso,
+            "tipo": self.tipo,
+            "senha": self.senha
         }
 
     @classmethod
     def from_dict(cls, data):
-        return cls(data["nome"], data["matricula"], data["curso"])
+        return cls(
+            data["nome"],
+            data["matricula"],
+            data["curso"],
+            data.get("tipo", "Cliente"),
+            data.get("senha", "")
+        )
 
 class Livro:
-    def __init__(self, titulo, autor, isbn, quantidade_exemplares):
+    def __init__(self, id_livro, titulo, autor, isbn, quantidade_exemplares):
+        self.id_livro = id_livro
         self.titulo = titulo
         self.autor = autor
         self.isbn = isbn
         self.quantidade_exemplares = quantidade_exemplares
-        self.fila_espera = Fila() # Instância de Fila
+        self.fila_espera = Fila()
 
     def __str__(self):
         return f"Título: {self.titulo}, Autor: {self.autor}, ISBN: {self.isbn}, Disponíveis: {self.quantidade_exemplares}"
@@ -104,29 +110,27 @@ class Livro:
             "autor": self.autor,
             "isbn": self.isbn,
             "quantidade_exemplares": self.quantidade_exemplares,
-            # Serializa a fila de espera como uma lista de matrículas de usuários
             "fila_espera_ids": self.fila_espera.to_list_of_user_ids(),
         }
 
     @classmethod
-    def from_dict(cls, data, user_map): # user_map para reconstruir a fila_espera
+    def from_dict(cls, data, user_map):
         livro = cls(
             data["titulo"],
             data["autor"],
             data["isbn"],
             data["quantidade_exemplares"],
         )
-        # A fila_espera é um objeto Fila, então precisamos reconstruí-la
         if "fila_espera_ids" in data:
             livro.fila_espera.from_list_of_user_ids(data["fila_espera_ids"], user_map)
         return livro
 
 class Emprestimo:
     def __init__(self, usuario, livro, data_emprestimo=None, data_devolucao=None):
-        self.usuario = usuario # Objeto Usuario
-        self.livro = livro     # Objeto Livro
+        self.usuario = usuario
+        self.livro = livro
         self.data_emprestimo = data_emprestimo if data_emprestimo else datetime.date.today()
-        self.data_devolucao = data_devolucao # Pode ser None ou datetime.date
+        self.data_devolucao = data_devolucao
 
     def __str__(self):
         status_devolucao = f"Devolvido em: {self.data_devolucao.isoformat()}" if self.data_devolucao else "Ainda emprestado"
@@ -151,9 +155,8 @@ class Emprestimo:
         livro = book_map.get(data["isbn_livro"])
 
         if not usuario or not livro:
-            # Não deveria acontecer se os dados estiverem consistentes
             print(f"Aviso: Não foi possível reconstruir empréstimo para usuário {data['matricula_usuario']} ou livro {data['isbn_livro']}.")
-            return None 
+            return None
 
         data_emprestimo = datetime.date.fromisoformat(data["data_emprestimo"])
         data_devolucao = datetime.date.fromisoformat(data["data_devolucao"]) if data["data_devolucao"] else None
